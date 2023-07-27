@@ -103,3 +103,7 @@ Caso alguma regra de autorização tenha barrado a mesma:
    Status Code: 422 
    Body: SALDO_INSUFICIENTE|SENHA_INVALIDA|CARTAO_INEXISTENTE (dependendo da regra que impediu a autorização)
 ```
+
+## Autenticação de usuários
+
+Autenticação usando o usuário criado pelo MongoDB quando sobe no docker compose.
