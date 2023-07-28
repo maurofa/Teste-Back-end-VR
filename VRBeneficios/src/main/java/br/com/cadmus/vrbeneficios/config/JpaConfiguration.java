@@ -15,7 +15,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
-@EnableJpaRepositories("br.com.cadmus.vrbeneficios.entity")
+@EnableJpaRepositories("br.com.cadmus.vrbeneficios.repository")
 public class JpaConfiguration {
 
 	@Bean

@@ -20,9 +20,9 @@ public class Transacao {
 	private Long id;
 	@ManyToOne @JoinColumn(name = "ID_CARTAO", nullable = false)
 	private Cartao cartao;
-	@Column(name = "VALOR_TRANSACAO")
+	@Column(name = "VALOR_TRANSACAO", nullable = false)
 	private Double valor;
-	@Column(name = "DATA_TRANSACAO")
+	@Column(name = "DATA_TRANSACAO", nullable = false)
 	private LocalDateTime dataHora;
 
 	public Transacao(Cartao cartao, Double valor, LocalDateTime dataHora) {

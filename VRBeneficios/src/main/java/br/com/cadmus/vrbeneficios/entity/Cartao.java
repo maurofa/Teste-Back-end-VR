@@ -15,11 +15,11 @@ public class Cartao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "NUMERO_CARTAO")
+	@Column(name = "NUMERO_CARTAO", unique = true, nullable = false)
 	private String numeroCartao;
-	@Column(name = "SENHA_CARTAO")
+	@Column(name = "SENHA_CARTAO", nullable = false)
 	private String senha;
-	@Column(name = "SALDO_CARTAO")
+	@Column(name = "SALDO_CARTAO", nullable = false)
 	private Double saldo;
 
 	public Cartao(String numeroCartao, String senha) {
