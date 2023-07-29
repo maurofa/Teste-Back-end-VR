@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cadmus.vrbeneficios.cmd.MantemCartaoCmd;
+import br.com.cadmus.vrbeneficios.cmd.ObterSaldoCmd;
 import br.com.cadmus.vrbeneficios.exception.CartaoExistenteException;
+import br.com.cadmus.vrbeneficios.exception.CartaoInexistenteException;
 import br.com.cadmus.vrbeneficios.to.CartaoTO;
 import jakarta.validation.Valid;
 
@@ -21,9 +23,11 @@ public class MiniAutorizadorController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MiniAutorizadorController.class);
 	private MantemCartaoCmd mantemCartaoCmd;
+	private ObterSaldoCmd obterSaldoCmd;
 
-	public MiniAutorizadorController(MantemCartaoCmd mantemCartaoCmd) {
+	public MiniAutorizadorController(MantemCartaoCmd mantemCartaoCmd, ObterSaldoCmd obterSaldoCmd) {
 		this.mantemCartaoCmd = mantemCartaoCmd;
+		this.obterSaldoCmd = obterSaldoCmd;
 	}
 
 	@Transactional
@@ -40,6 +44,11 @@ public class MiniAutorizadorController {
 	@Transactional
 	@GetMapping("/cartoes/{numeroCartao}")
 	public ResponseEntity<Double> getSaldo(@PathVariable String numeroCartao) {
-		return null;
+		try {
+			return new ResponseEntity<Double>(obterSaldoCmd.get(numeroCartao), HttpStatus.OK);
+		} catch(CartaoInexistenteException ex) {
+			LOG.error("Cartão inexistente", ex);
+			return ResponseEntity.notFound().build();
+		}
 	}
 }
