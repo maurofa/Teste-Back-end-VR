@@ -19,6 +19,8 @@ public class CriacaoCartaoRule {
 
 	public void validar(CartaoTO cartaoTO) {
 		Optional.ofNullable(cartaoDAO.findByNumeroCartao(cartaoTO.numeroCartao()))
-				.ifPresent(cartao -> new CartaoExistenteException());
+				.ifPresent(cartao -> {
+					throw new CartaoExistenteException();
+					});
 	}
 }
