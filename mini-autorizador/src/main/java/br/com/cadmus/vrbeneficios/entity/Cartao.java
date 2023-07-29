@@ -43,4 +43,9 @@ public class Cartao {
 	public Double getSaldo() {
 		return saldo;
 	}
+	
+	// Assumi que o sistema depois que autoriza a transação ele decresce o saldo
+	public void diminuiSaldo(Double valor) {
+		saldo -= valor;
+	}
 }
